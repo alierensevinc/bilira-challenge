@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { LineChart } from "react-native-svg-charts";
 import colors from "../utils/colors";
+import format from "../utils/format";
 
 const SymbolItem = ({ symbolData, onPressItem }) => {
   const priceChangeColor = useMemo(() => {
@@ -10,10 +11,10 @@ const SymbolItem = ({ symbolData, onPressItem }) => {
       : colors.negative;
   }, [symbolData.priceChangePercent]);
 
-  const formattedDayClose = parseFloat(symbolData.curDayClose).toFixed(2);
-
-  const formattedPriceChangePercent =
-    parseFloat(symbolData.priceChangePercent).toFixed(2) + "%";
+  const formattedDayClose = format(symbolData.curDayClose);
+  const formattedPriceChangePercent = format(
+    symbolData.priceChangePercent
+  ).concat("%");
 
   return (
     <TouchableOpacity onPress={onPressItem}>
@@ -29,7 +30,7 @@ const SymbolItem = ({ symbolData, onPressItem }) => {
             ]}
             svg={{ stroke: priceChangeColor }}
             contentInset={{ top: 24, bottom: 24 }}
-          ></LineChart>
+          />
           <View style={styles.infoContainer}>
             <Text style={styles.priceInfo}>{formattedDayClose}</Text>
             <Text style={[styles.changeInfo, { color: priceChangeColor }]}>

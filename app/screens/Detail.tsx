@@ -9,6 +9,8 @@ import {
 import { LineChart } from "react-native-svg-charts";
 import Icon from "react-native-vector-icons/Ionicons";
 import colors from "../utils/colors";
+import format from "../utils/format";
+import InfoRowItem from "../components/InfoRowItem";
 
 const DetailScreen = ({ navigation, route }) => {
   const { symbolData } = route.params;
@@ -19,9 +21,11 @@ const DetailScreen = ({ navigation, route }) => {
       : colors.negative;
   }, [symbolData.priceChangePercent]);
 
-  const formattedDayClose = parseFloat(symbolData.curDayClose).toFixed(2);
-  const formattedPriceChangePercent =
-    parseFloat(symbolData.priceChangePercent).toFixed(2) + "%";
+  const formattedDayClose = format(symbolData.curDayClose);
+  const formattedVolume = format(symbolData.volume);
+  const formattedPriceChangePercent = format(
+    symbolData.priceChangePercent
+  ).concat("%");
 
   return (
     <SafeAreaView style={styles.container}>
@@ -58,14 +62,8 @@ const DetailScreen = ({ navigation, route }) => {
       ></LineChart>
       <View style={styles.infoContainer}>
         <Text style={styles.infoHeader}>Market Stats</Text>
-        <View style={styles.infoRow}>
-          <Text style={styles.infoLabel}>Volume</Text>
-          <Text style={styles.infoValue}>{symbolData.volume}</Text>
-        </View>
-        <View style={styles.infoRow}>
-          <Text style={styles.infoLabel}>Total Trades</Text>
-          <Text style={styles.infoValue}>{symbolData.totalTrades}</Text>
-        </View>
+        <InfoRowItem label={"Volume"} value={formattedVolume} />
+        <InfoRowItem label={"Total Trades"} value={symbolData.totalTrades} />
       </View>
     </SafeAreaView>
   );
@@ -131,23 +129,6 @@ const styles = StyleSheet.create({
     marginLeft: 16,
     marginTop: 12,
     marginBottom: 24,
-  },
-  infoRow: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginHorizontal: 16,
-    marginBottom: 16,
-  },
-  infoLabel: {
-    fontWeight: 600,
-    fontSize: 14,
-    color: "#6C757D",
-  },
-  infoValue: {
-    fontWeight: 600,
-    fontSize: 14,
-    color: "#343A40",
   },
 });
 
