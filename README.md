@@ -106,6 +106,9 @@ The project uses several libraries to enhance functionality:
 - For more details, refer to the [Figma Design](https://www.figma.com/file/k2IYME4LiW5THkhR29GB/BiLira-Case-Design).
 - Ensure the application follows the provided design guidelines and functionality requirements.
 
+## Screenshots
+![Screenshot 1](assets/screenshots/1.png) ![Screenshot 2](assets/screenshots/2.png)
+
 ---
 
 This `README.md` file provides a comprehensive overview of the project, including the objective, features, technical requirements, setup instructions, and evaluation criteria. Feel free to adjust the content as necessary to match your project specifics and structure.
