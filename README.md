@@ -1,7 +1,3 @@
-Below is a draft for the `README.md` file based on the provided information:
-
----
-
 # React-Native Developer - Code Challenge
 
 ## Objective
